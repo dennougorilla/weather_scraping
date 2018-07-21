@@ -1,4 +1,7 @@
-weather_scraping
+#weather_scraping
+
+
+|'time'| 'atmospheric_pressure_local'| 'atmospheric_pressure_sea'| 'precipitation'| 'temperature'| 'dew_point_temperature'| 'vapor_pressure'| 'humidity'| 'wind_speed'| 'wind_direction'| 'daylight_hours'| 'overall_solar_radiation'| 'snowfall'| 'fallen_snow'| 'weather'| 'cloudcover'| 'visibility'|
 時
 気圧（hPa）現地 海面
 降水量（mm） 

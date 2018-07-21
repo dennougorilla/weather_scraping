@@ -6,7 +6,7 @@ from datetime import datetime, date, timedelta
 #}}}
 
 #def pandas_to_redshift {{{
-def pandas_to_redshift(dt):
+def pandas_to_redshift(df):
     dbname = os.getenv('REDSHIFT_DB')
     host = os.getenv('REDSHIFT_HOST')
     port = os.getenv('REDSHIFT_PORT')
@@ -28,25 +28,21 @@ def pandas_to_redshift(dt):
                             append = True)
 #}}}
 
-#def every_hour_scraping {{{
-def every_hour_scraping(sdt, edt):
-    while edt != sdt:
-            url = 'http://www.data.jma.go.jp/obd/stats/etrn/view/hourly_s1.php?prec_no=36&block_no=47570&year=' + str(sdt.year) + '&month=' + str(sdt.month) + '&day=' + str(sdt.day) + '&view=p1'
-            df = pd.read_html(url, 
-                    skiprows=2)[0]
-    
-            print(sdt)
-            #df = df.replace('--', '-1')
-            df.loc[:, 0] = pd.date_range(sdt, periods=24, freq='H')
-            df.columns = ['time', 'atmospheric_pressure_local', 'atmospheric_pressure_sea', 'precipitation', 'temperature', 'dew_point_temperature', 'vapor_pressure', 'humidity', 'wind_speed', 'wind_direction', 'daylight_hours', 'overall_solar_radiation', 'snowfall', 'fallen_snow', 'weather', 'cloudcover', 'visibility']
-            print(df)
-            #pandas_to_redshift(df)
-            sdt = sdt+timedelta(days=1)
+def hourly_scraping(dt):
+    url = 'http://www.data.jma.go.jp/obd/stats/etrn/view/hourly_s1.php?prec_no=36&block_no=47570&year=' + str(dt.year) + '&month=' + str(dt.month) + '&day=' + str(dt.day) + '&view=p1'
+    df = pd.read_html(url, skiprows=2)[0]
+    #df = df.replace('--', '-1')
+    df.loc[:, 0] = pd.date_range(dt, periods=24, freq='H')
+    df.columns = ['time', 'atmospheric_pressure_local', 'atmospheric_pressure_sea', 'precipitation', 'temperature', 'dew_point_temperature', 'vapor_pressure', 'humidity', 'wind_speed', 'wind_direction', 'daylight_hours', 'overall_solar_radiation', 'snowfall', 'fallen_snow', 'weather', 'cloudcover', 'visibility']
+    return df
 #}}}
 
 #main {{{
 if __name__ == "__main__":
     sdt = datetime(2016,3,1,1)
     edt = datetime(2018,7,21,1)
-    every_hour_scraping(sdt, edt)
+    while edt != sdt:
+       df = hourly_scraping(sdt)
+       #pandas_to_redshift(df)
+       sdt = sdt+timedelta(days=1)
 #}}}

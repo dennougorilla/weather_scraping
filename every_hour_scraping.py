@@ -3,6 +3,7 @@
 import pandas as pd
 import pandas_redshift as pr
 from datetime import datetime, date, timedelta
+import os
 #}}}
 
 #def pandas_to_redshift {{{

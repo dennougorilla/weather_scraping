@@ -1,6 +1,7 @@
 #weather_scraping
 
 
+every_hour_scraping sample_table↓   
 |'time'|'atmospheric_pressure_local'|'atmospheric_pressure_sea'|'precipitation'|'temperature'|'dew_point_temperature'|'vapor_pressure'|'humidity'|'wind_speed'|'wind_direction'|'daylight_hours'|'overall_solar_radiation'|'snowfall'|'fallen_snow'|'weather'|'cloudcover'|'visibility'|       
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|    
 |1|984.1|1010.8|2|-2.1|-2.8|5|95|7.5|西北西|NaN|NaN|4|6|NaN|NaN|0.27|

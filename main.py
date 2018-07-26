@@ -12,5 +12,6 @@ if __name__ == "__main__":
     edt = datetime(2018,7,21,1)
     while edt != sdt:
        df = weather_scraping.hourly(sdt)
-       rsconnecter.dbconnect()
+       print(df)
+       #rsconnecter.dbconnect(df)
        sdt = sdt+timedelta(days=1)

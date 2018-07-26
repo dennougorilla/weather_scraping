@@ -1,3 +1,6 @@
+import pandas as pd
+from datetime import datetime, date, timedelta
+
 def hourly(dt):
     url = 'http://www.data.jma.go.jp/obd/stats/etrn/view/hourly_s1.php?prec_no=36&block_no=47570&year=' + str(dt.year) + '&month=' + str(dt.month) + '&day=' + str(dt.day) + '&view=p1'
     df = pd.read_html(url, skiprows=2)[0]

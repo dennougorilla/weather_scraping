@@ -1,3 +1,5 @@
+import pandas_redshift as pr
+import os
 def dbconnect(df):
     dbname = os.getenv('REDSHIFT_DB')
     host = os.getenv('REDSHIFT_HOST')
